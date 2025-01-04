@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <Pagination></Pagination>
+      <Pagination />
     </>
   )
 }
