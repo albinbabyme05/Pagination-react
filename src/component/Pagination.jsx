@@ -30,6 +30,7 @@ const Pagination=()=> {
     }, [currentPageNum])
 
     const totalPage = Math.ceil(numProduct/productPerPage)
+    const pageNumber = Array.from({length:totalPage},(_,i)=>i+1)
   return (
 
     <div className='container'>
@@ -48,6 +49,28 @@ const Pagination=()=> {
             </div>)
         
       }
+      <div className= "pagination">
+
+        <button className='pagination-button'
+        onClick={handleClick}
+        disabled={currentPageNum===1}>⏪</button>
+        
+        {
+            pageNumber.map((pageNum)=>{
+                return(
+                    <button className={`pagination-button ${currentPageNum===pageNum ? 'active' : ''} `}
+                    key={pageNum}
+                    >
+                        {pageNum}
+                    </button>
+                )
+            })
+        }
+
+        <button className='pagination-button'
+        onClick={handleNext}
+        disabled={currentPageNum===totalPage}>⏩</button>
+      </div>
     </div>
   )
 }
