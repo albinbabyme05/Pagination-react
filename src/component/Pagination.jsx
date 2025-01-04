@@ -31,8 +31,20 @@ const Pagination=()=> {
 
     const totalPage = math.ceil(numProduct/productPerPage)
   return (
-    <div>
-      
+
+    <div className='container'>
+      <h1>Product List</h1>
+      {
+        product.length>0 &&(
+            <div className='product'>
+                {
+                    product.map((pred)=>{
+                        <div className='product-single'></div>
+                    })
+                }
+            </div>)
+        
+      }
     </div>
   )
 }
