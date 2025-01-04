@@ -8,7 +8,7 @@ const Pagination=()=> {
     const [numProduct, setNumProduct] =useState(0)
     const [currentPageNum, setCurrentPageNum] = useState(1)
     
-    const productPerPage = 8;
+    const productPerPage = 12;
     const fetchData = async()=>{
         const offset = (currentPageNum-1) * productPerPage
         try{
@@ -31,6 +31,18 @@ const Pagination=()=> {
 
     const totalPage = Math.ceil(numProduct/productPerPage)
     const pageNumber = Array.from({length:totalPage},(_,i)=>i+1)
+
+    const handlePrevious=()=>{
+        setCurrentPageNum(currentPageNum-1)
+    }
+    const handleNext=()=>{
+        setCurrentPageNum(currentPageNum+1)
+    }
+
+    const handlePageNumberClick =(pageNum)=>{
+        setCurrentPageNum(pageNum)
+    }
+
   return (
 
     <div className='container'>
@@ -52,7 +64,7 @@ const Pagination=()=> {
       <div className= "pagination">
 
         <button className='pagination-button'
-        onClick={handleClick}
+        onClick={handlePrevious}
         disabled={currentPageNum===1}>⏪</button>
         
         {
@@ -60,6 +72,7 @@ const Pagination=()=> {
                 return(
                     <button className={`pagination-button ${currentPageNum===pageNum ? 'active' : ''} `}
                     key={pageNum}
+                    onClick={()=>handlePageNumberClick(pageNum)}
                     >
                         {pageNum}
                     </button>
